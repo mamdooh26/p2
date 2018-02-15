@@ -1,0 +1,11 @@
+h1{
+	text-align:Left;
+}
+
+p{
+	 display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 100px;
+    -webkit-margin-end: 100px
+}
