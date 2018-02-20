@@ -14,6 +14,7 @@ require 'logic.php';
 <body>
 <div class="container">
     <h1>Bill Splitter</h1>
+    <p>Bill Splitter helps you calculate the amount of bill for each one. </p>
     <form method='GET'>
         <ul class="form-style-1">
             <li><label for='waysOfSplit'>Split how many ways? <span class="required">*</span></label></li>
