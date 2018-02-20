@@ -26,7 +26,7 @@ require 'logic.php';
                        name='tabCost'
                        id='tabCost' value='<?= $form->prefill("tabCost") ?>'></li>
             <li><label for='serviceRating'>How was the service?</label></li>
-            <li><select name='serviceRating' id='serviceRating' ?>></li>
+            <li><select name='serviceRating' id='serviceRating'>
             <option value='-1'>Choose one...</option>
             <option value='20' <?php if ($serviceRating == '20') echo 'selected' ?>>Excellent (20% tip)</option>
             <option value='18' <?php if ($serviceRating == '18') echo 'selected' ?>>Very Good (18% tip)</option>
@@ -40,24 +40,24 @@ require 'logic.php';
                            value='1' <?php if ($roundUp == '1') echo 'checked' ?>>
                                      Yes</label></li>
             <li><input type='submit' value='Calculate' class=''></li>
-            <br/>
-            <?php if ($form->hasErrors) : ?>
-                <div class='alert alert-danger'>
-                    <ul>
-                        <?php foreach ($errors as $error) : ?>
-                            <li><?= $error ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            <?php elseif (($owns)) : ?>
-
-                <li>
-                    <div class="alert alert-success">Everyone Owens $<?= $owns ?></div>
-                </li>
-            <?php endif; ?>
 
         </ul>
     </form>
+    <br/>
+    <?php if ($form->hasErrors) : ?>
+        <div class='alert alert-danger'>
+            <ul>
+                <?php foreach ($errors as $error) : ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php elseif (($owns)) : ?>
+
+        <li>
+            <div class="alert alert-success">Everyone Owens $<?= $owns ?></div>
+        </li>
+    <?php endif; ?>
 </div>
 </body>
 </html>
