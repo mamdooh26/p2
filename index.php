@@ -1,25 +1,47 @@
+<?php
+require 'helpers.php';
+require 'logic.php';
+?>
+
 <!DOCTYPE HTML>
 <html>
-	<head>
-	<title>P2</title>
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="style.css"/>
-	</head>
-	<body>
-		<h1> Mamdouh Alharbi</h1>
-		<img src="images/Mamdouh.jpg" alt="Mamdouh Photo" width = 200 height = 300 />
-		<br/>
-		<h1> About Me</h1>
-		<p>
-			My name is Mamdouh Alharbi, from Saudi Arabia. I work as a software testing lead. I've over 5 years of experince in software testing. I hold a mster degree form The University of Queensland.
-		</p>
-		<h1> Random Quote </h1>
-		<?php
-			$quotes[] = 'Life is about making an impact, not making an income. --Kevin Kruse';
-			$quotes[] = 'Whatever the mind of man can conceive and believe, it can achieve. –Napoleon Hill';
-			$quotes[] = 'Strive not to be a success, but rather to be of value. –Albert Einstein';
-			$random_number = rand(0,2);
-			?><p><?php echo ($quotes[$random_number]);?></p><?
-		?>
-	</body>
+<head>
+    <title>Bill Splitter</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Bill Splitter</h1>
+    <form method='GET'>
+        <ul class="form-style-1">
+            <li><label for='waysOfSplit'>Split how many ways? <span class="required">*</span></label></li>
+            <li><input type='text'
+                       name='waysOfSplit'
+                       id='waysOfSplit'><span class="required">* <?php echo $waysOfSplitErr; ?></span></li>
+            <li><label for='tabCost'>How much was the tab? <span class="required">*</span></label></li>
+            <li><input type='text'
+                       name='tabCost'
+                       id='tabCost'><span class="required">* <?php echo $waysOfSplitErr; ?></span></li>
+            <li><label for='serviceRating'>How was the service?</label></li>
+            <li><select name='serviceRating' id='serviceRating'></li>
+            <option value='0'>Choose one...</option>
+            <option value='20' <?php if ($day == 'excellent') echo 'selected' ?>>Excellent (20% tip)</option>
+            <option value='18' <?php if ($day == 'veryGood') echo 'selected' ?>>Very Good (18% tip)</option>
+            <option value='16' <?php if ($day == 'good') echo 'selected' ?>>Good(16% tip)</option>
+            <option value='0' <?php if ($day == 'poor') echo 'selected' ?>>Poor(0 tip)</option>
+            </select></li>
+            <li><label for='roundUp'>Round up?
+                    <input type='checkbox' name='roundUp' id='roundUp' value='1'>
+                                     Yes</label></li>
+            <li><input type='submit' value='Calculate' class=''></li>
+            <?php if ($owns): ?>
+            <li><p>Everyone Owens $<?= $owns ?></p></li>
+            <?php elseif ($owns): ?>
+                <div class='alert alert-danger'>No results</div>
+            <?php endif; ?>
+        </ul>
+    </form>
+</div>
+</body>
 </html>
