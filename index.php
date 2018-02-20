@@ -1,4 +1,5 @@
 <?php
+require('Form.php');
 require 'helpers.php';
 require 'logic.php';
 ?>
@@ -18,28 +19,42 @@ require 'logic.php';
             <li><label for='waysOfSplit'>Split how many ways? <span class="required">*</span></label></li>
             <li><input type='text'
                        name='waysOfSplit'
-                       id='waysOfSplit'><span class="required">* <?php echo $waysOfSplitErr; ?></span></li>
+                       id='waysOfSplit' value='<?= $form->prefill("waysOfSplit") ?>'></li>
             <li><label for='tabCost'>How much was the tab? <span class="required">*</span></label></li>
             <li><input type='text'
                        name='tabCost'
-                       id='tabCost'><span class="required">* <?php echo $waysOfSplitErr; ?></span></li>
+                       id='tabCost' value='<?= $form->prefill("tabCost") ?>'></li>
             <li><label for='serviceRating'>How was the service?</label></li>
-            <li><select name='serviceRating' id='serviceRating'></li>
-            <option value='0'>Choose one...</option>
-            <option value='20' <?php if ($day == 'excellent') echo 'selected' ?>>Excellent (20% tip)</option>
-            <option value='18' <?php if ($day == 'veryGood') echo 'selected' ?>>Very Good (18% tip)</option>
-            <option value='16' <?php if ($day == 'good') echo 'selected' ?>>Good(16% tip)</option>
-            <option value='0' <?php if ($day == 'poor') echo 'selected' ?>>Poor(0 tip)</option>
+            <li><select name='serviceRating' id='serviceRating' ?>></li>
+            <option value='-1'>Choose one...</option>
+            <option value='20' <?php if ($serviceRating == '20') echo 'selected' ?>>Excellent (20% tip)</option>
+            <option value='18' <?php if ($serviceRating == '18') echo 'selected' ?>>Very Good (18% tip)</option>
+            <option value='16' <?php if ($serviceRating == '16') echo 'selected' ?>>Good(16% tip)</option>
+            <option value='0' <?php if ($serviceRating == '0') echo 'selected' ?>>Poor(0 tip)</option>
             </select></li>
             <li><label for='roundUp'>Round up?
-                    <input type='checkbox' name='roundUp' id='roundUp' value='1'>
+                    <input type='checkbox'
+                           name='roundUp'
+                           id='roundUp'
+                           value='1' <?php if ($roundUp == '1') echo 'checked' ?>>
                                      Yes</label></li>
             <li><input type='submit' value='Calculate' class=''></li>
-            <?php if ($owns): ?>
-            <li><p>Everyone Owens $<?= $owns ?></p></li>
-            <?php elseif ($owns): ?>
-                <div class='alert alert-danger'>No results</div>
+            <br/>
+            <?php if ($form->hasErrors) : ?>
+                <div class='alert alert-danger'>
+                    <ul>
+                        <?php foreach ($errors as $error) : ?>
+                            <li><?= $error ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php elseif (($owns)) : ?>
+
+                <li>
+                    <div class="alert alert-success">Everyone Owens $<?= $owns ?></div>
+                </li>
             <?php endif; ?>
+
         </ul>
     </form>
 </div>
