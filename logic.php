@@ -1,14 +1,12 @@
 <?php
-//$waysOfSplit = $_GET['waysOfSplit'];
-//$tabCost = $_GET['tabCost'];
-//$serviceRating = $_GET['serviceRating'];
-//$roundUp = $_GET['roundUp'];
-
-$form = new DWA\Form($_GET);
+#$form = new DWA\Form($_GET);
+$form = new Mamdouh\MyForm($_GET);
+$calculate = new DWA\Calculate();
 $waysOfSplit = $form->get('waysOfSplit');
 $tabCost = $form->get('tabCost');
 $serviceRating = $form->get('serviceRating');
 $roundUp = $form->get('roundUp');
+
 if ($form->isSubmitted()) {
     $errors = $form->validate(
         [
@@ -16,10 +14,11 @@ if ($form->isSubmitted()) {
             'tabCost' => 'required|numeric',
         ]
     );
-    if ($roundUp == 1) {
+    $owns = $calculate->own($waysOfSplit, $tabCost, $serviceRating, $roundUp);
+    /*if ($roundUp == 1) {
         $owns = round(((($tabCost / 100) * $serviceRating) + $tabCost) / $waysOfSplit);
     } else {
         $owns = ((($tabCost / 100) * $serviceRating) + $tabCost) / $waysOfSplit;
-    }
+    }*/
 }
 ?>

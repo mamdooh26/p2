@@ -1,7 +1,13 @@
 <?php
 require('Form.php');
+require('MyForm.php');
+require 'Calculate.php';
 require 'helpers.php';
 require 'logic.php';
+
+use Mamdouh\MyForm;
+use DWA\Calculate;
+
 ?>
 
 <!DOCTYPE HTML>
@@ -27,12 +33,12 @@ require 'logic.php';
                        id='tabCost' value='<?= $form->prefill("tabCost") ?>'></li>
             <li><label for='serviceRating'>How was the service?</label></li>
             <li><select name='serviceRating' id='serviceRating'>
-            <option value='-1'>Choose one...</option>
-            <option value='20' <?php if ($serviceRating == '20') echo 'selected' ?>>Excellent (20% tip)</option>
-            <option value='18' <?php if ($serviceRating == '18') echo 'selected' ?>>Very Good (18% tip)</option>
-            <option value='16' <?php if ($serviceRating == '16') echo 'selected' ?>>Good(16% tip)</option>
-            <option value='0' <?php if ($serviceRating == '0') echo 'selected' ?>>Poor(0 tip)</option>
-            </select></li>
+                    <option value='-1'>Choose one...</option>
+                    <option value='20' <?php if ($serviceRating == '20') echo 'selected' ?>>Excellent (20% tip)</option>
+                    <option value='18' <?php if ($serviceRating == '18') echo 'selected' ?>>Very Good (18% tip)</option>
+                    <option value='16' <?php if ($serviceRating == '16') echo 'selected' ?>>Good(16% tip)</option>
+                    <option value='0' <?php if ($serviceRating == '0') echo 'selected' ?>>Poor(0 tip)</option>
+                </select></li>
             <li><label for='roundUp'>Round up?
                     <input type='checkbox'
                            name='roundUp'
@@ -53,10 +59,7 @@ require 'logic.php';
             </ul>
         </div>
     <?php elseif (($owns)) : ?>
-
-        <li>
-            <div class="alert alert-success">Everyone Owens $<?= $owns ?></div>
-        </li>
+        <div class="alert alert-success">Everyone Owens $<?= $owns ?></div>
     <?php endif; ?>
 </div>
 </body>
